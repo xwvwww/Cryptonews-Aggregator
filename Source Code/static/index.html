@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptocurrency News Aggregator</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Cryptocurrency News Aggregator</h1>
+        <p>Get the latest news about your favorite cryptocurrencies</p>
+    </header>
+    
+    <main>
+        <section class="search-container">
+            <h2>Search for Cryptocurrency News</h2>
+            <form id="search-form">
+                <div class="form-group">
+                    <label for="crypto-symbol">Enter Cryptocurrency Symbol (e.g., BTC, ETH):</label>
+                    <input type="text" id="crypto-symbol" name="crypto_symbol" placeholder="BTC" required>
+                </div>
+                <button type="submit" class="search-button">Search News</button>
+            </form>
+            <div id="error-message" class="error-message" style="display: none;"></div>
+        </section>
+        
+        <section id="results-container" class="results-container" style="display: none;">
+            <div class="results-header">
+                <h3>News Results <span id="crypto-symbol-display"></span></h3>
+                <p class="timestamp" id="timestamp"></p>
+            </div>
+            
+            <div id="news-grid" class="news-grid">
+                <!-- News items will be inserted here dynamically -->
+            </div>
+            
+            <div id="no-results" class="no-results" style="display: none;">
+                <p>No news found. Try another cryptocurrency symbol.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Cryptocurrency News Aggregator</p>
+    </footer>
+    
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

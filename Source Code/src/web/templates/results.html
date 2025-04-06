@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Cryptocurrency News Aggregator</h1>
+        <h2>Results for: {{ crypto_symbol }}</h2>
+    </header>
+    <main>
+        <section class="search-container">
+            <form action="/search" method="post">
+                <div class="form-group">
+                    <label for="crypto_symbol">Enter Cryptocurrency Symbol (e.g., BTC, ETH):</label>
+                    <input type="text" id="crypto_symbol" name="crypto_symbol" value="{{ crypto_symbol }}" required>
+                </div>
+                <button type="submit" class="search-button">Search News</button>
+            </form>
+        </section>
+        
+        <section class="results-container">
+            <div class="results-header">
+                <h3>News Results ({{ news|length }} articles)</h3>
+                <p class="timestamp">Last updated: {{ timestamp }}</p>
+            </div>
+            
+            {% if news|length == 0 %}
+            <div class="no-results">
+                <p>No news found for {{ crypto_symbol }}. Try another cryptocurrency symbol.</p>
+            </div>
+            {% else %}
+            <div class="news-grid">
+                {% for item in news %}
+                <article class="news-card">
+                    {% if item.image_url %}
+                    <div class="news-image">
+                        <img src="{{ item.image_url }}" alt="{{ item.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="news-content">
+                        <h4 class="news-title">
+                            <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                        </h4>
+                        <div class="news-meta">
+                            <span class="news-source">{{ item.source }}</span>
+                            <span class="news-date">{{ item.published_at }}</span>
+                        </div>
+                        {% if item.summary %}
+                        <p class="news-summary">{{ item.summary }}</p>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Cryptocurrency News Aggregator</p>
+    </footer>
+</body>
+</html>

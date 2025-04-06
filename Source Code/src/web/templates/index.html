@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Cryptocurrency News Aggregator</h1>
+    </header>
+    <main>
+        <section class="search-container">
+            <form action="/search" method="post">
+                <div class="form-group">
+                    <label for="crypto_symbol">Enter Cryptocurrency Symbol (e.g., BTC, ETH):</label>
+                    <input type="text" id="crypto_symbol" name="crypto_symbol" placeholder="BTC" required>
+                </div>
+                <button type="submit" class="search-button">Search News</button>
+            </form>
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Cryptocurrency News Aggregator</p>
+    </footer>
+</body>
+</html>
